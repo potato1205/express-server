@@ -30,8 +30,6 @@ router.get('/getUserInfo', function (req, res, next) {
   //   user.city = "杭州市";
   // }
 
-
-  // var response = { status: 1, data: { user: user } };
   db.query('select * from users', function (err, rows) {
     if (err) {
       // res.render("users", { title: "用户列表", datas: [] });
@@ -40,11 +38,8 @@ router.get('/getUserInfo', function (req, res, next) {
     } else {
       var response = { title: "用户列表", datas: rows };
       res.send(JSON.stringify(response));
-      // res.render("users", { title: "用户列表", datas: rows });
     }
   });
-
-  // console.log('db: ', db.query('dasa'));
   
 });
 
