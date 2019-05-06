@@ -3,15 +3,20 @@ var pool = mysql.createPool({
     host:"localhost",
     user:"root",
     password:"root1234",
-    database:"users",
+    database:"p2pWebApp",
 });
 
 function query(sql,callback){
+    console.log(sql)
     pool.getConnection(function(err,connection){
-        connection.query(sql, function (err,rows) {
-            callback(err,rows);
-            connection.release();
-        });
+        if(err) {
+            callback(err, null, null);
+        } else {
+            connection.query(sql, function (err,rows) {
+                connection.release();
+                callback(err,rows);
+            });
+        }
     });
 }
 
